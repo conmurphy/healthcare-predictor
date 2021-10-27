@@ -13,7 +13,7 @@ import socket
 import json
 
 # Logging
-log = logger('predictor', '{}/predictor.log'.format(os.getcwd()))
+# log = logger('predictor', '{}/predictor.log'.format(os.getcwd()))
 
 # Default serve delay
 global serve_delay
@@ -31,7 +31,7 @@ try:
 except:
     redis_port = '6379'
 
-log.debug('Redis target is: {}'.format(redis_service))
+# log.debug('Redis target is: {}'.format(redis_service))
 
 
 # Redis support in version 2
@@ -43,11 +43,11 @@ r = redis.Redis(host=redis_service, port=redis_port,
 app = Flask(__name__)
 
 # Log application started
-log.info('APPSTART: Predictor started')
+# log.info('APPSTART: Predictor started')
 
 @app.route('/booking', methods=['POST'])
 def predictor():
-    log.debug('Incoming booking request from: {}'.format(request.remote_addr))
+    # log.debug('Incoming booking request from: {}'.format(request.remote_addr))
     
     try:
         result = {
@@ -63,20 +63,20 @@ def predictor():
             "category": request.json['category']
         }
         try:
-            log.info("Adding patient:" + str(json.dumps(result)) )
+            # log.info("Adding patient:" + str(json.dumps(result)) )
             r.rpush('transactions', str(json.dumps(result)))
-            log.debug('REDIS: Logged transaction')
-            log.debug('Waiting {} seconds before serving...'.format(serve_delay))
+            # log.debug('REDIS: Logged transaction')
+            # log.debug('Waiting {} seconds before serving...'.format(serve_delay))
             time.sleep(serve_delay)
         except:
-            log.warning(
-                'REDIS: {} is not reachable. Will not log this transaction.'.format(redis_service))
+            # log.warning(
+            #     'REDIS: {} is not reachable. Will not log this transaction.'.format(redis_service))
             pass
-        log.debug('Returning prediction to {}'.format(request.remote_addr))
+        # log.debug('Returning prediction to {}'.format(request.remote_addr))
         
         return jsonify(result)
     except:
-        log.error('Can\'t return payload, something is wrong')
+        # log.error('Can\'t return payload, something is wrong')
 
 # Kubernetes health checks
 @app.route('/healthz', methods=['GET'])
@@ -115,10 +115,10 @@ def delay10():
     serve_delay = 10
     return "Set serve delay to 10 seconds - Timestamp: {} - serve_delay: {}".format(datetime.now(), serve_delay)
 
-@app.route('/log', methods=['GET'])
-def showlog():
-    with open('{}/predictor.log'.format(os.getcwd())) as logfile:
-        return logfile.read()
+# @app.route('/log', methods=['GET'])
+# def showlog():
+#     with open('{}/predictor.log'.format(os.getcwd())) as logfile:
+#         return logfile.read()
 
 
 # Run Flask
