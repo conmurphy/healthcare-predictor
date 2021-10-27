@@ -26,4 +26,5 @@ ADD predictor.py utils.py start_with_appd.sh /
 EXPOSE 5001/tcp
 
 # Run it
-ENTRYPOINT ["./start_with_appd.sh"]
+#ENTRYPOINT ["./start_with_appd.sh"]
+ENTRYPOINT ["python ./predictor.py"]
