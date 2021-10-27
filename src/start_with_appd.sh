@@ -26,4 +26,4 @@
 # fi
 
 #pyagent run $AGENT_PROXY -c $AGENT_CONFIG  $ENTRY_POINT
-python /predictor.py
+python predictor.py
