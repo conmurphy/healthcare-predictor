@@ -17,14 +17,16 @@ RUN pip install -r requirements.txt
 RUN pip install -U appdynamics
 
 # Set Entry point
-ENV APP_ENTRY_POINT "python /predictor.py"
+#ENV APP_ENTRY_POINT "python /predictor.py"
+
+MKDIR /tmp
 
 # Copy app requirements
-ADD predictor.py utils.py start_with_appd.sh /
+ADD predictor.py utils.py /tmp
 
 # Expose port 5001
 EXPOSE 5001/tcp
 
 # Run it
 #ENTRYPOINT ["./start_with_appd.sh"]
-ENTRYPOINT ["python /predictor.py"]
+ENTRYPOINT ["python", "/tmp/predictor.py"]
