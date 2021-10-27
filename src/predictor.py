@@ -76,6 +76,7 @@ def predictor():
         
         return jsonify(result)
     except:
+        pass
         # log.error('Can\'t return payload, something is wrong')
 
 # Kubernetes health checks
