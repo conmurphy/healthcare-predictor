@@ -28,6 +28,8 @@ COPY utils.py /predictor
 # Expose port 5001
 EXPOSE 5001/tcp
 
+WORKDIR /predictor
+
 # Run it
 #ENTRYPOINT ["./start_with_appd.sh"]
-ENTRYPOINT ["python", "/predictor/predictor.py"]
+ENTRYPOINT ["python", "predictor.py"]
