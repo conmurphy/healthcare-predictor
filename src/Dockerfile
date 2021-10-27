@@ -19,10 +19,11 @@ RUN pip install -U appdynamics
 # Set Entry point
 #ENV APP_ENTRY_POINT "python /predictor.py"
 
-MKDIR /tmp
+RUN mkdir /tmp
 
 # Copy app requirements
-ADD predictor.py utils.py /tmp
+COPY predictor.py /tmp
+COPY utils.py /tmp
 
 # Expose port 5001
 EXPOSE 5001/tcp
