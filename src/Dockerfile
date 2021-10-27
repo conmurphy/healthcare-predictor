@@ -30,6 +30,9 @@ EXPOSE 5001/tcp
 
 WORKDIR /predictor
 
+RUN touch predictor.log
+RUN chmod 755 predictor.log
+
 # Run it
 #ENTRYPOINT ["./start_with_appd.sh"]
 ENTRYPOINT ["python", "predictor.py"]
