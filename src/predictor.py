@@ -70,7 +70,7 @@ def predictor():
             time.sleep(serve_delay)
         except:
             # log.warning(
-                'REDIS: {} is not reachable. Will not log this transaction.'.format(redis_service))
+            #    'REDIS: {} is not reachable. Will not log this transaction.'.format(redis_service))
             pass
         # log.debug('Returning prediction to {}'.format(request.remote_addr))
         
