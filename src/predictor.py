@@ -31,11 +31,16 @@ try:
 except:
     redis_port = '6379'
 
+try:
+    redis_password = os.environ['REDIS_ACCESS_KEY']
+except:
+    redis_password = ''
+
 # log.debug('Redis target is: {}'.format(redis_service))
 
 
 # Redis support in version 2
-r = redis.Redis(host=redis_service, port=redis_port,
+r = redis.Redis(host=redis_service, port=redis_port,password=redis_password
                 db=0, socket_connect_timeout=2)
 
 
@@ -71,7 +76,7 @@ def predictor():
         except:
             # log.warning(
             #    'REDIS: {} is not reachable. Will not log this transaction.'.format(redis_service))
-            pass
+            print("Redis not reachable")
         # log.debug('Returning prediction to {}'.format(request.remote_addr))
         
         return jsonify(result)
