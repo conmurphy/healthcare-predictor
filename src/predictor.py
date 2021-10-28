@@ -40,7 +40,7 @@ except:
 
 
 # Redis support in version 2
-r = redis.Redis(host=redis_service, port=redis_port,password=redis_password
+r = redis.Redis(host=redis_service, port=redis_port,password=redis_password,
                 db=0, socket_connect_timeout=2)
 
 
