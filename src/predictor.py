@@ -4,7 +4,7 @@
 
 import redis
 import os
-from utils import logger
+#from utils import logger
 import time
 from datetime import datetime
 
